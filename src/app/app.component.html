@@ -1,10 +1,26 @@
-<button mat-raised-button color="primary">Primary</button>
+<mat-form-field class="example-full-width">
+  <mat-label>Item to add</mat-label>
+  <input matInput placeholder="buy groceries" [(ngModel)]="item">
+</mat-form-field>
 
-<mat-spinner></mat-spinner>
+<button mat-raised-button color="primary" (click)="addToList(item)">Add to list</button>
+
+<button mat-raised-button color="primary" (click)="translateList()">
+  Translate
+  <mat-icon style><mat-spinner color="accent" diameter="20"></mat-spinner></mat-icon>
+</button>
 
 
+<mat-label>List of items</mat-label>
 <mat-list role="list">
-  <mat-list-item role="listitem">Item 1</mat-list-item>
-  <mat-list-item role="listitem">Item 2</mat-list-item>
-  <mat-list-item role="listitem">Item 3</mat-list-item>
+  <div *ngFor="let hero of listOfItems">
+    <mat-list-item role="listitem">{{hero}}</mat-list-item>
+  </div>
+</mat-list>
+
+<mat-label>Translated items</mat-label>
+<mat-list role="list">
+  <div *ngFor="let hero of translatedItems">
+    <mat-list-item role="listitem">{{hero}}</mat-list-item>
+  </div>
 </mat-list>
