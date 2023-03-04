@@ -1,26 +1,78 @@
-<mat-form-field class="example-full-width">
-  <mat-label>Item to add</mat-label>
-  <input matInput placeholder="buy groceries" [(ngModel)]="item">
-</mat-form-field>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
+          <div class="card-body py-4 px-4 px-md-5">
 
-<button mat-raised-button color="primary" (click)="addToList(item)">Add to list</button>
+            <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+              <i class="fas fa-check-square me-1"></i>
+              <u>To Do List</u>
+            </p>
 
-<button mat-raised-button color="primary" (click)="translateList()">
-  Translate
-  <mat-icon style><mat-spinner color="accent" diameter="20"></mat-spinner></mat-icon>
-</button>
+            <div class="pb-2">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-row align-items-center">
 
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Item to add</mat-label>
+                            <input class="form-control form-control-lg" matInput placeholder="buy groceries" [(ngModel)]="item">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                          <div>
+                            <button mat-raised-button color="primary" (click)="addToList(item)">Add to list</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-<mat-label>List of items</mat-label>
-<mat-list role="list">
-  <div *ngFor="let hero of listOfItems">
-    <mat-list-item role="listitem">{{hero}}</mat-list-item>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <mat-label>List of items</mat-label>
+                  <mat-list role="list">
+                    <div *ngFor="let hero of listOfItems">
+                      <mat-list-item role="listitem">{{hero}}</mat-list-item>
+                    </div>
+                  </mat-list>
+                </div>
+                <div class="col-sm">
+                  <button mat-raised-button color="primary" (click)="translateList()">
+                    Translate
+                    <mat-icon style><mat-spinner color="accent" diameter="20"></mat-spinner></mat-icon>
+                  </button>
+                </div>
+                <div class="col-sm">
+                  <mat-label>Translated items</mat-label>
+                  <mat-list role="list">
+                    <div *ngFor="let hero of translatedItems">
+                      <mat-list-item role="listitem">{{hero}}</mat-list-item>
+                    </div>
+                  </mat-list>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</mat-list>
+</section>
 
-<mat-label>Translated items</mat-label>
-<mat-list role="list">
-  <div *ngFor="let hero of translatedItems">
-    <mat-list-item role="listitem">{{hero}}</mat-list-item>
-  </div>
-</mat-list>
+
+
+
+
