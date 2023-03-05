@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,21 +16,20 @@ export class AppComponent {
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addToList(item: string) {
     this.listOfItems.push(item);
   }
 
-  translateList() {
+  async translateList() {
     this.translatedItems = [];
     for (const item of this.listOfItems) {
-      this.getTranslation(item);
+      await this.getTranslation(item);
     }
   }
 
-  getTranslation(query: string) {
+  async getTranslation(query: string) {
     this.isLoading = true;
     const apiKey = 'AIzaSyCv5PW04RpJ_wDP6gu1tzOMZRHFsZeUMN0';
     const sourceLanguage = 'en';
@@ -41,10 +41,10 @@ export class AppComponent {
       .append('source', sourceLanguage)
       .append('target', targetLanguage);
 
-    this.http.post('https://translation.googleapis.com/language/translate/v2', null, { params: params } )
-    .subscribe((result: any) => {
-      this.isLoading = false;
-      this.translatedItems.push(result.data.translations[0].translatedText);
-    });
+    const result: any = await firstValueFrom(
+      this.http.post('https://translation.googleapis.com/language/translate/v2', null, { params: params } )
+    );
+    this.isLoading = false;
+    this.translatedItems.push(result.data.translations[0].translatedText);
   }
 }
