@@ -18,18 +18,30 @@ export class AppComponent {
 
   ngOnInit() {}
 
+  /**
+   * add item to 'to-do list'
+   * @param item 
+   */
   addToList(item: string) {
     this.listOfItems.push(item);
   }
 
+  /**
+   * translate to do list
+   */
   async translateList() {
     this.translatedItems = [];
     for (const item of this.listOfItems) {
-      await this.getTranslation(item);
+      const translatedWord = await this.getTranslation(item);
+      this.translatedItems.push(translatedWord);
     }
   }
 
-  async getTranslation(query: string) {
+  /**
+   * this function will translate the given query to german language and return the string
+   * @param query the string to get translated
+   */
+  async getTranslation(query: string): Promise<string> {
     this.isLoading = true;
     const apiKey = 'AIzaSyCv5PW04RpJ_wDP6gu1tzOMZRHFsZeUMN0';
     const sourceLanguage = 'en';
@@ -45,6 +57,6 @@ export class AppComponent {
       this.http.post('https://translation.googleapis.com/language/translate/v2', null, { params: params } )
     );
     this.isLoading = false;
-    this.translatedItems.push(result.data.translations[0].translatedText);
+    return result.data.translations[0].translatedText;
   }
 }
