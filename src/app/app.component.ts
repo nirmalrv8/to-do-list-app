@@ -24,6 +24,7 @@ export class AppComponent {
    */
   addToList(item: string) {
     this.listOfItems.push(item);
+    this.item = '';
   }
 
   /**

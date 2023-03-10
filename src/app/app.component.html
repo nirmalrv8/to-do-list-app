@@ -13,15 +13,13 @@
             <!-- Adding item section -->
             <div class="pb-2">
               <div class="card">
-                <div class="card-body">
+                <div class="card-body adding-section">
                   <div class="d-flex flex-row align-items-center">
-
                     <div class="container">
                       <div class="row">
                         <div class="col-sm">
-                          <mat-form-field class="example-full-width">
-                            <mat-label>Item to add</mat-label>
-                            <input class="form-control form-control-lg" matInput placeholder="buy groceries" [(ngModel)]="item">
+                          <mat-form-field>
+                            <input class="form-control" matInput placeholder="buy groceries" [(ngModel)]="item">
                           </mat-form-field>
                         </div>
                         <div class="col-sm">
@@ -31,7 +29,6 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -50,10 +47,10 @@
                     </div>
                   </mat-list>
                 </div>
-                <div class="col-sm">
+                <div class="col-sm translated-list">
                   <button mat-raised-button color="primary" (click)="translateList()">
                     Translate
-                    <mat-icon style><mat-spinner color="accent" diameter="20"></mat-spinner></mat-icon>
+                    <mat-icon *ngIf="isLoading" style><mat-spinner color="accent" diameter="16"></mat-spinner></mat-icon>
                   </button>
                 </div>
                 <div class="col-sm">
