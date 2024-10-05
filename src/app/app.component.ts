@@ -44,7 +44,7 @@ export class AppComponent {
    */
   async getTranslation(query: string): Promise<string> {
     this.isLoading = true;
-    const apiKey = 'AIzaSyCv5PW04RpJ_wDP6gu1tzOMZRHFsZeUMN0';
+    const apiKey = 'get_from_secret_manager';
     const sourceLanguage = 'en';
     const targetLanguage = 'de';
 
